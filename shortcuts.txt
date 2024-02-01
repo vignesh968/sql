@@ -1,0 +1,261 @@
+1. **CONCAT()**
+   SELECT CONCAT('First ', 'Second') AS concatenated_string;
+output:
+
+concatenated_string
+First Second
+-------
+2. **CONCAT_WS()**: 
+   ```sql
+   SELECT CONCAT_WS(' -- ', 'John', 'Doe','vijay','vicky') AS concatenated_string;
+   
+output:
+
+concatenated_string
+John -- Doe -- vijay -- vicky
+
+3. **SUBSTRING() or SUBSTR()**: 
+select substr('name',starting , from that length) as .....;
+ i)  SELECT SUBSTRING('Hello World', 1, 5) AS substring_result;
+
+output:
+
+substring_result
+Hello
+
+
+ii)
+SELECT SUBSTR('Hello World', 7, -5) AS result;
+
+
+output:
+result
+ello
+
+4. **LENGTH() or CHAR_LENGTH()**: 
+  
+   SELECT LENGTH('Hello') AS string_length;
+   
+output:
+string_length
+5.**LOWER()**: 
+   SELECT LOWER('Hello') AS lowercase_string;
+   
+output:
+lowercase_string
+hello
+
+6.**UPPER()**:
+   SELECT UPPER('Hello') AS uppercase_string;
+  
+output
+uppercase_string
+HELLO
+
+7.**TRIM()**: 
+   
+   SELECT TRIM(LEADING '0' FROM '00000123556') AS trimmed_string;
+
+output:
+trimmed_string
+123556
+
+8.**LTRIM()**: left trim
+   SELECT LTRIM('   Hello') AS trimmed_string;
+
+output
+trimmed_string
+Hello
+
+9.**RTRIM()**: left trim
+   SELECT LTRIM('   Hello') AS trimmed_string;
+
+output
+trimmed_string
+Hello
+
+10. **REPLACE()**:
+    
+    SELECT REPLACE('Hello, world!', 'world', 'MySQL') AS replaced_string;
+
+output
+replaced_string
+Hello, MySQL!
+
+11.**LOCATE()**: 
+    SELECT LOCATE('e', 'Hello') AS position;
+   
+output:
+position
+2
+
+12. **LEFT()**: 
+    
+    SELECT LEFT('Hello', 2) AS left_string;
+output
+left_string
+He
+
+13.**right()**: 
+    
+    SELECT right('Hello', 2) AS right_string;
+output
+right_string
+lo
+
+14**REVERSE()**: 
+    SELECT REVERSE('Hello') AS reversed_string;
+
+15.FIRST(): - first row data only
+
+Syntax: 
+
+SELECT FIRST(column_name) FROM table_name;
+
+16LAST(): returns the last value of the selected column
+
+Syntax: 
+
+SELECT LAST(column_name) FROM table_name;
+
+17 NOW()-DISPLAY DATE,TIME
+
+SELECT NOW() FROM table_name;
+
+18 CURDATE() -DATE ONLY 
+
+SELECT CURDATE();
+
+19 CURTIME()
+
+select CURTIME();
+
+20.	 EXTRACT - MICROSECOND, SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, YEAR, etc
+SELECT EXTRACT(YEAR FROM '2023-09-20') AS extracted_year;    OTPUT:2023
+
+SELECT EXTRACT(MONTH FROM '2023-09-20') AS extracted_month;  OTPUT:09
+
+SELECT EXTRACT(DAY FROM '2023-09-20') AS extracted_day;       OTPUT:20
+
+date:
+
+21.date_add():
+
+select id,date_add(date_column,interval 30 day) from days;
+
+22.date_sub:
+
+select id, date_sub(date_column,interval 4 month) from days;
+
+23.datediff
+
+SELECT DATEDIFF('2017-01-13','2017-01-03') AS DateDiff;
+
+
+STRING
+
+24.ascii()
+
+select ascii('a'), ascii('z'), ascii('A'), ascii('Z');
+
+output:
+97	122 	65	90
+
+25.concat()
+select concat('vicky',' developer');
+
+26.
+CONCAT_WS(): 
+Syntax: SELECT CONCAT_WS('_', 'geeks', 'for', 'geeks');
+
+Output: geeks_for_geeks
+
+27.FIND_IN_SET(): 
+
+
+Syntax: SELECT FIND_IN_SET('b', 'a, b, c, d, e, f');
+Output: 2
+
+28.
+INSTR(): find the first  occurrence of 'e' 
+
+Syntax: select INSTR('geeks for geeks', 'e');
+Output: 2 (the first occurrence of ‘e’)
+
+29LEFT(): 
+Syntax: SELECT LEFT('geeksforgeeks.org', 5);
+
+Output: geeks
+
+30. LOCATE():
+Syntax: SELECT LOCATE('ee', 'geeksforgeeks', 1);
+Output: 2
+Syntax: SELECT LOCATE('ee', 'geeksforgeeks', 2);
+Output: 2
+Syntax: SELECT LOCATE('ee', 'geeksforgeeks', 3);
+Output: 10
+
+31. lpad
+select lpad('vicky',8,'-') from employee;
+output
+---vicky
+32.MID(): 
+
+Syntax: Mid ("geeksforgeeks", 6, 2);
+Output: for
+
+33.POSITION():
+
+Syntax: SELECT POSITION('e' IN 'geeksforgeeks');
+Output: 2
+
+34.REPEAT():
+Syntax: SELECT REPEAT('geeks', 2);
+Output: geeksgeeks
+
+35.
+REPLACE(): .
+Syntax: REPLACE('123geeks123', '123','456');
+Output: 456geeks456
+
+36
+RIGHT(): 
+Syntax: SELECT RIGHT('geeksforgeeks.org', 4);
+Output: ‘.org’
+
+37
+RPAD(): 
+Syntax: RPAD('geeks', 8, '0');
+Output: ‘geeks000’
+38.
+RTRIM(): ---
+Syntax: RTRIM('geeksxyxzyyy', 'xyz');
+Output: ‘geeks’
+39
+STRCMP(): This function is used to compare 2 strings.
+If string1 and string2 are the same, the STRCMP function will return 0.
+If string1 is smaller than string2, the STRCMP function will return -1.
+If string1 is larger than string2, the STRCMP function will return 1.
+
+40.SUBSTR(): 
+Syntax:SUBSTR('geeksforgeeks', 1, 5);
+Output: ‘geeks’
+
+41 SUBSTRING(): 
+Syntax: SELECT SUBSTRING('GeeksForGeeks.org', 9, 1);
+Output: ‘G’
+
+42.substring_index():
+select substring_index('sgfdsf.sudsfsdi.fsdfds.sdd','.',2);
+
+output:
+sgfdsf.sudsfsdi
+
+43.trim()
+select trim(leading 'u'from 'uuugfghfg' );
+output
+gfghfg
+
+44. limit
+limit 4 
+it execute first 4 rows

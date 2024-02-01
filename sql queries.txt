@@ -1,0 +1,293 @@
+Advantages of SQL
+-- No programming needed
+--High-Speed Query Processing
+-- Standardized Language
+--Portability
+-- Interactive language
+-- More than one Data View
+Disadvantages of SQL
+--cost
+--interface is complex
+--partial database control
+
+sql queries
+1.Query a list of CITY names from STATION for cities that have an even ID number. Print the results in any order, but exclude duplicates from the answer=>
+
+select distinct CITY from STATION where mod(id,2)=0;
+
+2.Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+answer=>
+
+select count(city)- count(distinct city) from STATION;
+
+3.Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+answer=>
+
+SELECT city, LENGTH(city) AS length
+FROM station
+ORDER BY length ASC, city ASC
+LIMIT 1;
+
+SELECT city, LENGTH(city) AS length
+FROM station
+ORDER BY length DESC, city ASC
+LIMIT 1;
+
+4.Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+
+answer=>
+
+select distinct city from station where city like '%a' or city like'%e' or city like'%i' or city like '%o' or city like'%u';
+
+5.Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
+
+
+answer=>
+ 
+SELECT DISTINCT city
+FROM station
+WHERE LOWER(SUBSTRING(city, 1, 1)) IN ('a', 'e', 'i', 'o', 'u')
+  AND LOWER(SUBSTRING(city, -1, 1)) IN ('a', 'e', 'i', 'o', 'u');
+
+6.Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+
+answer =>
+
+SELECT DISTINCT city
+FROM station
+WHERE LOWER(SUBSTRING(city, 1, 1)) not IN ('a', 'e', 'i', 'o', 'u')
+ ;
+
+
+7.
+Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+
+answer=>
+
+select distinct city from station where lower(substring(city,-1,1)not in ('a','e','i','o','u'));
+
+
+
+8.Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+
+
+answer=>
+
+ 
+SELECT DISTINCT city
+FROM station
+WHERE LOWER(SUBSTRING(city, 1, 1))not IN ('a', 'e', 'i', 'o', 'u')
+  or LOWER(SUBSTRING(city, -1, 1))not IN ('a', 'e', 'i', 'o', 'u');
+
+
+9.Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+
+ 
+SELECT DISTINCT city
+FROM station
+WHERE LOWER(SUBSTRING(city, 1, 1))not IN ('a', 'e', 'i', 'o', 'u')
+  and LOWER(SUBSTRING(city, -1, 1))not IN ('a', 'e', 'i', 'o', 'u');
+
+10.Query the average population for all cities in CITY, rounded down to the nearest integer.
+
+ answer=>
+
+select floor(avg(population)) from city ;
+
+11.Query the difference between the maximum and minimum populations in CITY.
+
+answer=>
+
+select max(population)- min(population) from city;
+
+12.Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+
+Write a query calculating the amount of error (i.e.: actual -miscalculated average monthly salaries), and round it up to the next integer.
+
+answer =>
+select ceil(avg(salary)-avg(replace(salary,'0',''))) from EMPLOYEES;
+
+13.From the following table, write a SQL query to find the details of 1970 Nobel Prize winners. Order the results by subject, ascending except for 'Chemistry' and ‘Economics’ which will come at the end of the result set. Return year, subject, winner, country, and category.
+
+SELECT *
+FROM nobel_win
+WHERE year=1970 
+ORDER BY
+ CASE
+    WHEN subject IN ('Economics','Chemistry') THEN 1
+    ELSE 0
+ END ASC,
+ subject,
+ winner;
+
+14.From the following table, write a SQL query to find the items whose prices are higher than or equal to $250. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price.  
+
+SELECT pro_name, pro_price 
+     FROM item_mast
+    WHERE pro_price >= 250
+ ORDER BY pro_price DESC, pro_name;
+
+15.
+From the following table, write a SQL query to calculate average price of the items for each company. Return average price and company code. 
+
+SELECT AVG(pro_price), pro_com
+    FROM item_mast
+GROUP BY pro_com;
+
+16.From the following table, write a SQL query to find customers who are either from the city 'New York' or who do not have a grade greater than 100. Return customer_id, cust_name, city, grade, and salesman_id.
+
+SELECT * 
+FROM customer 
+WHERE city = 'New York' OR NOT grade>100;
+
+
+17.From the following table, write a SQL query to identify customers who do not belong to the city of 'New York' or have a grade value that exceeds 100. Return customer_id, cust_name, city, grade, and salesman_id.
+
+SELECT * 
+FROM customer 
+WHERE NOT (city = 'New York' OR grade>100);
+
+18.From the following table, write a SQL query to find details of all orders excluding those with ord_date equal to '2012-09-10' and salesman_id higher than 5005 or purch_amt greater than 1000.Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+
+
+SELECT * 
+FROM  orders 
+WHERE NOT ((ord_date ='2012-09-10' 
+AND salesman_id>5005) 
+OR purch_amt>1000.00);
+
+19.From the following table, write a SQL query to find details of all orders with a purchase amount less than 200 or exclude orders with an order date greater than or equal to '2012-02-10' and a customer ID less than 3009. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+
+SELECT * 
+FROM  orders 
+WHERE(purch_amt<200 OR 
+NOT(ord_date>='2012-02-10' 
+AND customer_id<3009));
+
+
+20.From the following table, write a SQL query to find all orders that meet the following conditions. Exclude combinations of order date equal to '2012-08-17' or customer ID greater than 3005 and purchase amount less than 1000.
+
+SELECT * 
+FROM  orders 
+WHERE NOT((ord_date ='2012-08-17' 
+OR customer_id>3005) 
+AND purch_amt<1000);
+
+21.Write a SQL query that displays order number, purchase amount, and the achieved and unachieved percentage (%) for those orders that exceed 50% of the target value of 6000.
+
+SELECT ord_no,purch_amt, 
+(100*purch_amt)/6000 AS "Achieved %", 
+(100*(6000-purch_amt)/6000) AS "Unachieved %" 
+FROM  orders 
+WHERE (100*purch_amt)/6000>50;
+
+or
+
+select ord_no ,purch_amt ,(100*purch_amt)/6000 AS "Achieved %", 
+100-(100*purch_amt)/6000 AS "Unachieved %" from orders where purch_amt >6000/2;
+
+22.From the following table, write a SQL query to find the details of those salespeople who live in cities other than Paris and Rome. Return salesman_id, name, city, commission.
+
+SELECT * 
+FROM salesman 
+WHERE NOT city IN('Paris','Rome');
+or
+SELECT * 
+FROM salesman 
+WHERE city NOT IN('Paris','Rome');
+
+23.From the following table, write a SQL query to find the details of all salespeople except those whose names begin with any letter between 'A' and 'L' (not inclusive). Return salesman_id, name, city, commission.
+
+SELECT *
+FROM salesman
+WHERE name NOT BETWEEN 'A' and 'L';
+
+24.From the following table, write a SQL query to identify those rows where col1 does not contain the escape character underscore ( _ ). Return col1.
+
+SELECT *
+FROM testtable
+WHERE col1 NOT LIKE '%/_%' ESCAPE '/';
+
+
+25.From the following table, write a SQL query to identify those rows where col1 does not contain the forward slash character ( / ). Return col1.
+
+SELECT *
+FROM testtable
+WHERE col1 NOT LIKE '%//%' ESCAPE '/';
+
+26.From the following table, write a SQL query to find all those customers who does not have any grade. Return customer_id, cust_name, city, grade, salesman_id.
+
+SELECT *
+FROM customer
+WHERE grade IS NULL;
+
+27.From the following table, write a SQL query to find the highest purchase amount ordered by each customer on a particular date. Return, order date and highest purchase amount.
+
+SELECT customer_id,ord_date,MAX(purch_amt) 
+FROM orders 
+GROUP BY customer_id,ord_date;
+
+28.
+From the following table, write a SQL query to find the highest order (purchase) amount by each customer on a particular order date. Filter the result by highest order (purchase) amount above 2000.00. Return customer id, order date and maximum purchase amount.
+
+select max(purch_amt),customer_id ,ord_date from orders group by customer_id ,ord_date having max(purch_amt)>2000;
+29
+From the following table, write a SQL query to find the maximum order (purchase) amount based on the combination of each customer and order date. Filter the rows for maximum order (purchase) amount is either 2000, 3000, 5760, 6000. Return customer id, order date and maximum purchase amount.
+SELECT customer_id,ord_date,MAX(purch_amt) 
+FROM orders 
+GROUP BY customer_id,ord_date 
+HAVING MAX(purch_amt) IN(2000 ,3000,5760, 6000);
+
+30.
+
+We define an employee's total earnings to be their monthly  (salary *months) worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as  space-separated integers.
+
+select  max(salary*months), count(salary*months)
+from employee
+where salary*months = (
+    select max(salary*months) as m_total
+    from employee
+)
+group by salary*months
+
+31.Query the following two values from the STATION table:
+
+The sum of all values in LAT_N rounded to a scale of  decimal places.
+The sum of all values in LONG_W rounded to a scale of  decimal places.
+
+select round(sum(lat_n),2),round(sum(LONG_W ),2) from STATION ;
+
+
+32.Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than 137.2345 . Round your answer to  4 decimal places.
+
+
+
+select round(long_w,4) from STATION  where  lat_n in(select max(lat_n) from station where lat_n<137.2345 ) group by long_w;
+
+
+
+33.From the following table, write a SQL query to find the maximum order (purchase) amount for each customer. The customer ID should be in the range 3002 and 3007(Begin and end values are included.).Filter the rows for maximum order (purchase) amount is higher than 1000. Return customer id and maximum purchase amount.
+
+SELECT customer_id,MAX(purch_amt) 
+FROM orders 
+WHERE customer_id BETWEEN 3002 and 3007 
+GROUP BY customer_id 
+HAVING MAX(purch_amt)>1000;
+
+34.Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+select  sum(c.population )from city  c join country cy on c.CountryCode = cy.code
+where cy.CONTINENT ='Asia' ;
+
+
+important
+35.Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. Order your output in descending order by the total number of challenges in which the hacker earned a full score. If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
+
+select h.hacker_id,h.name 
+from Hackers h,Submissions s,Challenges c,Difficulty d
+where s.challenge_id=c.challenge_id and h.hacker_id=s.hacker_id
+and s.score=d.score and c.difficulty_level=d.difficulty_level
+group by h.hacker_id, h.name having count(c.challenge_id) > 1
+order by count(c.challenge_id) desc, h.hacker_id;

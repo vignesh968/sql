@@ -1,0 +1,828 @@
+ various string functions 
+
+1. **CONCAT()**: Concatenates two or more strings together.
+   ```sql
+   SELECT CONCAT('First ', 'Second') AS concatenated_string;
+   ```
+
+2. **CONCAT_WS()**: Concatenates strings with a specified separator.
+   ```sql
+   SELECT CONCAT_WS(', ', 'John', 'Doe') AS concatenated_string;
+   ```
+
+3. **SUBSTRING() or SUBSTR()**: Extracts a substring from a string.
+   ```sql
+   SELECT SUBSTRING('Hello World', 1, 5) AS substring_result;
+   ```
+
+4. **LENGTH() or CHAR_LENGTH()**: Returns the length of a string.
+   ```sql
+   SELECT LENGTH('Hello') AS string_length;
+   ```
+
+5. **LOWER()**: Converts a string to lowercase.
+   ```sql
+   SELECT LOWER('Hello') AS lowercase_string;
+   ```
+
+6. **UPPER()**: Converts a string to uppercase.
+   ```sql
+   SELECT UPPER('Hello') AS uppercase_string;
+   ```
+
+7. **TRIM()**: Removes specified prefixes or suffixes from a string.
+   ```sql
+   SELECT TRIM(LEADING '0' FROM '00123') AS trimmed_string;
+   ```
+
+8. **LTRIM()**: Removes leading spaces from a string.
+   ```sql
+   SELECT LTRIM('   Hello') AS trimmed_string;
+   ```
+
+9. **RTRIM()**: Removes trailing spaces from a string.
+   ```sql
+   SELECT RTRIM('Hello   ') AS trimmed_string;
+   ```
+
+10. **REPLACE()**: Replaces occurrences of a specified substring within a string.
+    ```sql
+    SELECT REPLACE('Hello, world!', 'world', 'MySQL') AS replaced_string;
+    ```
+
+11. **LOCATE()**: Returns the position of a substring within a string.
+    ```sql
+    SELECT LOCATE('l', 'Hello') AS position;
+    ```
+
+12. **LEFT()**: Extracts a specified number of characters from the left of a string.
+    ```sql
+    SELECT LEFT('Hello', 2) AS left_string;
+    ```
+
+13. **RIGHT()**: Extracts a specified number of characters from the right of a string.
+    ```sql
+    SELECT RIGHT('Hello', 2) AS right_string;
+    ```
+
+14. **REVERSE()**: Reverses a string.
+    ```sql
+    SELECT REVERSE('Hello') AS reversed_string;
+    ```
+
+15. **UCASE()**: Converts a string to uppercase.
+    ```sql
+    SELECT UCASE('hello') AS uppercase_string;
+    ```
+
+16. **LCASE()**: Converts a string to lowercase.
+    ```sql
+    SELECT LCASE('HELLO') AS lowercase_string;
+    ```
+
+17. **CHAR_LENGTH()**: Returns the number of characters in a string.
+    ```sql
+    SELECT CHAR_LENGTH('Hello') AS character_count;
+    ```
+
+18. **MID()**: Extracts a substring from a string.
+    ```sql
+    SELECT MID('Hello', 2, 3) AS substring_result;
+    ```
+
+19. **INSERT()**: Inserts a substring into a string.
+    ```sql
+    SELECT INSERT('Hello', 3, 0, 'INSERTED ') AS modified_string;
+    ```
+
+20. **LPAD()**: Pads a string to a certain length with another string.
+    ```sql
+    SELECT LPAD('123', 5, '0') AS padded_string;
+    ```
+
+21. **RPAD()**: Pads a string to a certain length with another string on the right side.
+    ```sql
+    SELECT RPAD('123', 5, '0') AS padded_string;
+    ```
+
+
+22. **TRIM()**: Removes specified prefixes or suffixes (or spaces by default) from a string.
+    ```sql
+    SELECT TRIM('  Hello  ') AS trimmed_string;
+    ```
+
+23. **SPACE()**: Returns a string of the specified number of spaces.
+    ```sql
+    SELECT SPACE(5) AS spaces;
+    ```
+
+24. **ASCII()**: Returns the ASCII value of the leftmost character of a string.
+    ```sql
+    SELECT ASCII('A') AS ascii_value;
+    ```
+
+25. **CHAR()**: Returns the character based on the ASCII value.
+    ```sql
+    SELECT CHAR(65) AS character;
+    ```
+
+26. **REPEAT()**: Repeats a string a specified number of times.
+    ```sql
+    SELECT REPEAT('Hello ', 3) AS repeated_string;
+    ```
+
+27. **FIND_IN_SET()**: Returns the position of a string within a comma-separated list.
+    ```sql
+    SELECT FIND_IN_SET('apple', 'apple,banana,grape') AS position;
+    ```
+
+28. **FIELD()**: Returns the index (position) of the first occurrence of a value in a list of values.
+    ```sql
+    SELECT FIELD('banana', 'apple', 'banana', 'grape') AS position;
+    ```
+
+29. **STRCMP()**: Compares two strings.
+    ```sql
+    SELECT STRCMP('hello', 'world') AS comparison_result;
+    ```
+
+30. **SUBSTRING_INDEX()**: Returns a substring from a string before a specified number of occurrences of a delimiter.
+    ```sql
+    SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2) AS sub_string;
+    ```
+
+31. **INSTR()**: Returns the position of the first occurrence of a substring in a string.
+    ```sql
+    SELECT INSTR('hello world', 'world') AS position;
+    ```
+
+32. **REGEXP**: Allows pattern matching using regular expressions.
+    ```sql
+    SELECT 'MySQL' REGEXP 'My' AS is_match;
+    ```
+
+33. **LEFT() and RIGHT() with LOCATE()**: Extracts a substring based on a pattern.
+    ```sql
+    SELECT LEFT('Hello world', LOCATE(' ', 'Hello world')) AS left_substring;
+    SELECT RIGHT('Hello world', LENGTH('Hello world') - LOCATE(' ', 'Hello world')) AS right_substring;
+    ```
+Certainly! Here are some more commonly used string functions in MySQL:
+
+34. **FORMAT()**: Formats a number with commas as thousands separators.
+    ```sql
+    SELECT FORMAT(1234567.89, 2) AS formatted_number;
+    ```
+
+35. **REPLACE() with REGEXP**: Replaces occurrences of a pattern using regular expressions.
+    ```sql
+    SELECT REGEXP_REPLACE('Hello 123', '[0-9]', 'X') AS replaced_string;
+    ```
+
+36. **REPEAT() with LPAD()**: Repeats a string a specified number of times and pads it with another string.
+    ```sql
+    SELECT LPAD(REPEAT('*', 5), 10, '-') AS repeated_and_padded_string;
+    ```
+
+37. **SOUNDEX()**: Returns a phonetic representation of a string.
+    ```sql
+    SELECT SOUNDEX('Smith') AS soundex_value;
+    ```
+
+38. **REVERSE() with SUBSTRING()**: Reverses a string and extracts a substring from it.
+    ```sql
+    SELECT SUBSTRING(REVERSE('Hello'), 1, 3) AS reversed_substring;
+    ```
+
+39. **UUID()**: Generates a Universally Unique Identifier (UUID).
+    ```sql
+    SELECT UUID() AS generated_uuid;
+    ```
+
+40. **REGEXP_SUBSTR()**: Returns the matched substring based on a regular expression pattern.
+    ```sql
+    SELECT REGEXP_SUBSTR('My phone number is 123-456-7890', '[0-9]+') AS extracted_number;
+    ```
+
+41. **LOCATE() with INSTR()**: Finds the position of a substring and returns the same result using a different function.
+    ```sql
+    SELECT LOCATE('world', 'Hello world') AS position_using_locate,
+           INSTR('Hello world', 'world') AS position_using_instr;
+    ```
+
+42. **LPAD() with RPAD()**: Pads a string on both sides with another string to a specified length.
+    ```sql
+    SELECT LPAD('12', 5, '0') AS left_padded,
+           RPAD('12', 5, '0') AS right_padded;
+    ```
+
+43. **INSERT() with CONCAT()**: Inserts a substring into a string using CONCAT().
+    ```sql
+    SELECT CONCAT(INSERT('Hello', 3, 0, 'INSERTED '), ' world') AS modified_string;
+    ```
+
+44. **FIELD() with CONCAT()**: Searches for a value in a list and returns the index of the first occurrence.
+    ```sql
+    SELECT FIELD('banana', CONCAT('apple', 'banana', 'grape')) AS position;
+    ```
+
+
+45. **UCASE()**: Converts a string to uppercase.
+    ```sql
+    SELECT UCASE('hello') AS uppercase_string;
+    ```
+
+46. **LCASE()**: Converts a string to lowercase.
+    ```sql
+    SELECT LCASE('HELLO') AS lowercase_string;
+    ```
+
+47. **MID()**: Extracts a substring from a string.
+    ```sql
+    SELECT MID('Hello', 2, 3) AS substring_result;
+    ```
+
+48. **SPACE()**: Returns a string of the specified number of spaces.
+    ```sql
+    SELECT SPACE(5) AS spaces;
+    ```
+
+49. **LOCATE()**: Returns the position of the first occurrence of a substring in a string.
+    ```sql
+    SELECT LOCATE('l', 'Hello') AS position;
+    ```
+
+50. **REVERSE()**: Reverses a string.
+    ```sql
+    SELECT REVERSE('Hello') AS reversed_string;
+    ```
+
+51. **REPEAT()**: Repeats a string a specified number of times.
+    ```sql
+    SELECT REPEAT('Hello ', 3) AS repeated_string;
+    ```
+
+52. **FIND_IN_SET()**: Returns the position of a string within a comma-separated list.
+    ```sql
+    SELECT FIND_IN_SET('apple', 'apple,banana,grape') AS position;
+    ```
+
+53. **REGEXP**: Allows pattern matching using regular expressions.
+    ```sql
+    SELECT 'MySQL' REGEXP 'My' AS is_match;
+    ```
+
+54. **LEFT() and RIGHT() with LOCATE()**: Extracts a substring based on a pattern.
+    ```sql
+    SELECT LEFT('Hello world', LOCATE(' ', 'Hello world')) AS left_substring;
+    SELECT RIGHT('Hello world', LENGTH('Hello world') - LOCATE(' ', 'Hello world')) AS right_substring;
+    ```
+
+55. **INSERT()**: Inserts a substring into a string.
+    ```sql
+    SELECT INSERT('Hello', 3, 0, 'INSERTED ') AS modified_string;
+    ```
+
+56. **LPAD() and RPAD()**: Pads a string to a certain length with another string.
+    ```sql
+    SELECT LPAD('123', 5, '0') AS left_padded_string;
+    SELECT RPAD('123', 5, '0') AS right_padded_string;
+    ```
+
+57. **HEX()**: Converts a decimal value to a hexadecimal value.
+    ```sql
+    SELECT HEX(255) AS hex_value;
+    ```
+
+58. **UNHEX()**: Converts a hexadecimal value to a decimal value.
+    ```sql
+    SELECT UNHEX('FF') AS decimal_value;
+    ```
+
+
+
+
+### Numeric Functions:
+
+1. **ROUND()**: Rounds a number to a specified number of decimal places.
+   ```sql
+   SELECT ROUND(5.678, 2) AS rounded_number;
+   ```
+
+2. **CEIL()**: Rounds a number up to the nearest integer.
+   ```sql
+   SELECT CEIL(5.2) AS ceil_result;
+   ```
+
+3. **FLOOR()**: Rounds a number down to the nearest integer.
+   ```sql
+   SELECT FLOOR(5.8) AS floor_result;
+   ```
+
+4. **ABS()**: Returns the absolute value of a number.
+   ```sql
+   SELECT ABS(-10) AS absolute_value;
+   ```
+
+5. **POWER()**: Raises a number to a specified power.
+   ```sql
+   SELECT POWER(2, 3) AS result;
+   ```
+
+### Date and Time Functions:
+
+6. **NOW()**: Returns the current date and time.
+   ```sql
+   SELECT NOW() AS current_datetime;
+   ```
+
+7. **DATE()**: Extracts the date part from a datetime or timestamp.
+   ```sql
+   SELECT DATE('2023-09-20 15:30:00') AS extracted_date;
+   ```
+
+8. **TIME()**: Extracts the time part from a datetime or timestamp.
+   ```sql
+   SELECT TIME('2023-09-20 15:30:00') AS extracted_time;
+   ```
+
+9. **DATEDIFF()**: Calculates the difference in days between two dates.
+   ```sql
+   SELECT DATEDIFF('2023-09-30', '2023-09-20') AS day_difference;
+   ```
+
+10. **DATE_ADD() and DATE_SUB()**: Adds or subtracts a specified time interval from a date.
+    ```sql
+    SELECT DATE_ADD('2023-09-20', INTERVAL 3 DAY) AS added_date;
+    SELECT DATE_SUB('2023-09-20', INTERVAL 1 MONTH) AS subtracted_date;
+    ```
+
+### Mathematical Operators:
+
+11. **+, -, *, /, %**: Addition, subtraction, multiplication, division, and modulo operators.
+    ```sql
+    SELECT 5 + 3 AS addition_result,
+           5 - 3 AS subtraction_result,
+           5 * 3 AS multiplication_result,
+           5 / 3 AS division_result,
+           5 % 3 AS modulo_result;
+    ```
+
+12. **SUM()**: Calculates the sum of a column.
+    ```sql
+    SELECT SUM(column_name) AS total_sum FROM table_name;
+    ```
+
+13. **AVG()**: Calculates the average of a column.
+    ```sql
+    SELECT AVG(column_name) AS average_value FROM table_name;
+    ```
+
+14. **COUNT()**: Counts the number of rows or non-null values in a column.
+    ```sql
+    SELECT COUNT(*) AS total_rows FROM table_name;
+    ```
+
+Absolutely! Let's cover some more functions and operations in MySQL, including logical, conditional, and aggregate functions:
+
+### Logical Operators:
+
+1. **AND, OR, NOT**: Used for logical operations in WHERE clauses.
+   ```sql
+   SELECT * FROM table WHERE condition1 AND condition2;
+   SELECT * FROM table WHERE condition1 OR condition2;
+   SELECT * FROM table WHERE NOT condition;
+   ```
+
+### Conditional Functions:
+
+2. **CASE**: Allows conditional logic within a query.
+   ```sql
+   SELECT 
+       CASE 
+           WHEN condition1 THEN result1
+           WHEN condition2 THEN result2
+           ELSE default_result
+       END AS computed_column
+   FROM table;
+   ```
+
+### Aggregate Functions:
+
+3. **GROUP BY**: Groups rows that have the same values into summary rows.
+   ```sql
+   SELECT column, aggregate_function(column) FROM table GROUP BY column;
+   ```
+
+4. **HAVING**: Filters the results of aggregate functions in a GROUP BY clause.
+   ```sql
+   SELECT column, aggregate_function(column) FROM table GROUP BY column HAVING condition;
+   ```
+
+5. **MIN()**: Returns the minimum value in a column.
+   ```sql
+   SELECT MIN(column) FROM table;
+   ```
+
+6. **MAX()**: Returns the maximum value in a column.
+   ```sql
+   SELECT MAX(column) FROM table;
+   ```
+
+7. **AVG()**: Calculates the average of values in a column.
+   ```sql
+   SELECT AVG(column) FROM table;
+   ```
+
+8. **SUM()**: Calculates the sum of values in a column.
+   ```sql
+   SELECT SUM(column) FROM table;
+   ```
+
+### Control Flow Functions:
+
+9. **IF()**: Returns one value if a condition is TRUE, and another if FALSE.
+   ```sql
+   SELECT IF(condition, value_if_true, value_if_false) AS result;
+   ```
+
+10. **NULLIF()**: Returns NULL if two expressions are equal; otherwise, it returns the first expression.
+   ```sql
+   SELECT NULLIF(expression1, expression2) AS result;
+   ```
+
+11. **COALESCE()**: Returns the first non-null expression in a list.
+   ```sql
+   SELECT COALESCE(expression1, expression2, ...) AS result;
+   ```
+
+### Control Statements:
+
+12. **IF...THEN...ELSE**: Conditional control within stored programs (procedures, functions, triggers).
+    ```sql
+    IF condition THEN
+        statements;
+    ELSE
+        statements;
+    END IF;
+    ```
+
+13. **CASE Statements**: Conditional control using CASE within stored programs.
+    ```sql
+    CASE
+        WHEN condition THEN
+            statements;
+        ELSE
+            statements;
+    END CASE;
+    ```
+
+
+### Data Type Conversion Functions:
+
+1. **CAST()**: Converts a value from one data type to another.
+   ```sql
+   SELECT CAST('123' AS INT) AS converted_value;
+   ```
+
+2. **CONVERT()**: Converts a value from one data type to another.
+   ```sql
+   SELECT CONVERT('123', SIGNED INTEGER) AS converted_value;
+   ```
+
+### NULL Handling Functions:
+
+3. **IS NULL**: Checks if a value is NULL.
+   ```sql
+   SELECT * FROM table WHERE column IS NULL;
+   ```
+
+4. **IFNULL()**: Returns a specified value if the expression is NULL, otherwise returns the expression.
+   ```sql
+   SELECT IFNULL(column, 'default_value') AS result;
+   ```
+
+5. **COALESCE()**: Returns the first non-NULL expression from a list.
+   ```sql
+   SELECT COALESCE(column1, column2, 'default_value') AS result;
+   ```
+
+### Mathematical Functions:
+
+6. **SQRT()**: Returns the square root of a number.
+   ```sql
+   SELECT SQRT(16) AS square_root;
+   ```
+
+7. **RAND()**: Returns a random floating-point value between 0 and 1.
+   ```sql
+   SELECT RAND() AS random_value;
+   ```
+
+### System Information Functions:
+
+8. **VERSION()**: Returns the MySQL version as a string.
+   ```sql
+   SELECT VERSION() AS mysql_version;
+   ```
+
+9. **USER()**: Returns the current MySQL user.
+   ```sql
+   SELECT USER() AS current_user;
+   ```
+
+### Bitwise Functions:
+
+10. **BIT_AND()**: Performs a bitwise AND operation.
+    ```sql
+    SELECT BIT_AND(column) AS result;
+    ```
+
+11. **BIT_OR()**: Performs a bitwise OR operation.
+    ```sql
+    SELECT BIT_OR(column) AS result;
+    ```
+
+12. **BIT_XOR()**: Performs a bitwise XOR operation.
+    ```sql
+    SELECT BIT_XOR(column) AS result;
+    ```
+
+### Advanced Functions:
+
+13. **UNION and UNION ALL**: Combines the result sets of two or more SELECT statements.
+    ```sql
+    SELECT * FROM table1 UNION SELECT * FROM table2;
+    SELECT * FROM table1 UNION ALL SELECT * FROM table2;
+    ```
+
+14. **WITH (Common Table Expression - CTE)**: Defines a temporary result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement.
+    ```sql
+    WITH cte AS (SELECT * FROM table)
+    SELECT * FROM cte WHERE condition;
+    ```
+
+15. **JSON Functions**: A set of functions for working with JSON data.
+    ```sql
+    SELECT JSON_OBJECT('key', 'value') AS json_result;
+    SELECT JSON_ARRAY(1, 2, 3) AS json_array_result;
+    ```
+
+### Subqueries:
+
+1. **Scalar Subquery**: Returns a single value.
+   ```sql
+   SELECT (SELECT COUNT(*) FROM table) AS total_rows;
+   ```
+
+2. **Row Subquery**: Returns a row of values.
+   ```sql
+   SELECT * FROM table1 WHERE (column1, column2) = (SELECT col1, col2 FROM table2);
+   ```
+
+3. **Correlated Subquery**: References columns from the outer query.
+   ```sql
+   SELECT * FROM table1 t1 WHERE column1 = (SELECT MAX(column2) FROM table2 t2 WHERE t1.id = t2.t1_id);
+   ```
+
+### Joins:
+
+4. **INNER JOIN**: Retrieves records that have matching values in both tables.
+   ```sql
+   SELECT * FROM table1 INNER JOIN table2 ON table1.id = table2.t1_id;
+   ```
+
+5. **LEFT JOIN (or LEFT OUTER JOIN)**: Retrieves all records from the left table and matching records from the right table.
+   ```sql
+   SELECT * FROM table1 LEFT JOIN table2 ON table1.id = table2.t1_id;
+   ```
+
+6. **RIGHT JOIN (or RIGHT OUTER JOIN)**: Retrieves all records from the right table and matching records from the left table.
+   ```sql
+   SELECT * FROM table1 RIGHT JOIN table2 ON table1.id = table2.t1_id;
+   ```
+
+7. **FULL JOIN (or FULL OUTER JOIN)**: Retrieves all records when there is a match in either the left or the right table.
+   ```sql
+   SELECT * FROM table1 FULL JOIN table2 ON table1.id = table2.t1_id;
+   ```
+
+### Window Functions:
+
+8. **ROW_NUMBER()**: Assigns a unique number to each row based on the specified ordering.
+   ```sql
+   SELECT *, ROW_NUMBER() OVER (ORDER BY column) AS row_num FROM table;
+   ```
+
+9. **RANK()**: Assigns a rank to each row based on the specified ordering, with the same rank given to rows with equal values.
+   ```sql
+   SELECT *, RANK() OVER (ORDER BY column) AS rank FROM table;
+   ```
+
+10. **DENSE_RANK()**: Similar to RANK(), but without gaps between the rank values for identical values.
+   ```sql
+   SELECT *, DENSE_RANK() OVER (ORDER BY column) AS dense_rank FROM table;
+   ```
+
+11. **NTILE(n)**: Divides the result set into "n" number of approximately equal parts and assigns a bucket number to each part.
+   ```sql
+   SELECT *, NTILE(4) OVER (ORDER BY column) AS bucket FROM table;
+   ```
+
+### Stored Procedures:
+
+12. **CREATE PROCEDURE**: Creates a stored procedure.
+    ```sql
+    DELIMITER //
+
+    CREATE PROCEDURE GetEmployeeCount()
+    BEGIN
+        SELECT COUNT(*) FROM employees;
+    END //
+
+    DELIMITER ;
+    ```
+
+13. **CALL**: Executes a stored procedure.
+    ```sql
+    CALL GetEmployeeCount();
+    ```
+Subqueries, also known as subselects or inline views, are SQL queries nested within another SQL query. They can be used to perform operations or functions within the main query and are a powerful tool for retrieving data and performing complex tasks. Here are some common types and examples of subqueries:
+
+### Types of Subqueries:
+
+1. **Scalar Subquery**: A subquery that returns a single value.
+   ```sql
+   SELECT (SELECT MAX(salary) FROM employees) AS max_salary;
+   ```
+
+2. **Row Subquery**: A subquery that returns a row of values.
+   ```sql
+   SELECT * FROM employees WHERE (age, department) = (SELECT MAX(age), department FROM employees);
+   ```
+
+3. **Correlated Subquery**: A subquery that refers to a column from the outer query.
+   ```sql
+   SELECT name FROM employees e1 WHERE salary > (SELECT AVG(salary) FROM employees e2 WHERE e1.department = e2.department);
+   ```
+
+4. **Nested Subquery**: A subquery within a subquery.
+   ```sql
+   SELECT * FROM table1 WHERE column1 IN (SELECT column1 FROM (SELECT * FROM table2) AS subquery);
+   ```
+
+### Examples of Subqueries:
+
+1. **Using Subquery in WHERE clause**:
+   ```sql
+   SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders WHERE order_amount > 1000);
+   ```
+
+2. **Using Subquery in INSERT statement**:
+   ```sql
+   INSERT INTO high_salary_employees SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+   ```
+
+3. **Using Subquery in SELECT statement (Scalar Subquery)**:
+   ```sql
+   SELECT (SELECT MAX(salary) FROM employees) AS max_salary;
+   ```
+
+4. **Using Subquery in UPDATE statement**:
+   ```sql
+   UPDATE employees SET bonus = (SELECT AVG(salary) FROM employees WHERE department = 'Sales');
+   ```
+
+Absolutely! Let's explore more advanced subquery examples to illustrate their versatility and usefulness:
+
+### Subqueries in Different Contexts:
+
+1. **Using Subquery with EXISTS**:
+   - Checks if any records exist in the subquery result.
+   ```sql
+   SELECT name FROM customers WHERE EXISTS (SELECT * FROM orders WHERE orders.customer_id = customers.id);
+   ```
+
+2. **Using Subquery in a CASE statement**:
+   - Incorporates subquery results within a CASE statement for conditional logic.
+   ```sql
+   SELECT name,
+          (CASE WHEN (SELECT COUNT(*) FROM orders WHERE orders.customer_id = customers.id) > 0 THEN 'Has Orders' ELSE 'No Orders' END) AS order_status
+   FROM customers;
+   ```
+
+3. **Using Subquery with ANY/ALL**:
+   - Compares a value with a set of values using ANY or ALL.
+   ```sql
+   SELECT name FROM customers WHERE age > ALL (SELECT age FROM customers WHERE country = 'USA');
+   ```
+
+4. **Subquery in FROM clause**:
+   - Utilizes a subquery as a derived table within the FROM clause.
+   ```sql
+   SELECT subquery.*
+   FROM (SELECT id, name FROM customers WHERE country = 'USA') AS subquery;
+   ```
+
+### Subqueries for Aggregation:
+
+5. **Using Subquery for Aggregation**:
+   - Uses subquery to calculate aggregates for filtering.
+   ```sql
+   SELECT department, AVG(salary) AS avg_salary
+   FROM employees
+   GROUP BY department
+   HAVING AVG(salary) > (SELECT AVG(salary) FROM employees);
+   ```
+
+6. **Subquery with Aggregate Function in SELECT**:
+   - Utilizes a subquery with aggregate function in the SELECT statement.
+   ```sql
+   SELECT (SELECT AVG(salary) FROM employees) AS avg_salary;
+   ```
+
+### Subqueries for IN and NOT IN:
+
+7. **Subquery with IN operator**:
+   - Uses a subquery with the IN operator.
+   ```sql
+   SELECT name FROM customers WHERE id IN (SELECT customer_id FROM orders);
+   ```
+
+8. **Subquery with NOT IN operator**:
+   - Uses a subquery with the NOT IN operator.
+   ```sql
+   SELECT name FROM customers WHERE id NOT IN (SELECT customer_id FROM orders);
+   ```
+
+These examples showcase how subqueries can be utilized in various contexts, including EXISTS, CASE statements, ANY/ALL comparisons, aggregate operations, and filtering using IN and NOT IN operators. Subqueries are a powerful tool in SQL for complex querying and data manipulation. Always refer to the MySQL documentation for the version you're using to get the most accurate and up-to-date information on subqueries and their usage.
+
+
+
+Absolutely! Let's explore a different set of advanced subquery examples:
+
+### Subqueries with JOINs:
+
+1. **Using Subquery with INNER JOIN**:
+   - Utilizes a subquery with an INNER JOIN to filter results.
+   ```sql
+   SELECT customers.name, orders.order_id
+   FROM customers
+   INNER JOIN orders ON customers.id = orders.customer_id
+   WHERE orders.order_amount > (SELECT AVG(order_amount) FROM orders);
+   ```
+
+2. **Using Subquery with LEFT JOIN**:
+   - Incorporates a subquery with a LEFT JOIN to fetch matching records.
+   ```sql
+   SELECT customers.name, orders.order_id
+   FROM customers
+   LEFT JOIN orders ON customers.id = orders.customer_id
+   WHERE orders.order_id IS NOT NULL;
+   ```
+
+3. **Using Subquery with EXISTS and NOT EXISTS**:
+   - Utilizes EXISTS and NOT EXISTS with a subquery for filtering.
+   ```sql
+   SELECT name
+   FROM customers
+   WHERE EXISTS (SELECT * FROM orders WHERE orders.customer_id = customers.id)
+     AND NOT EXISTS (SELECT * FROM returns WHERE returns.customer_id = customers.id);
+   ```
+
+### Subqueries for Data Modification:
+
+4. **Subquery in UPDATE statement**:
+   - Uses a subquery to update data based on certain conditions.
+   ```sql
+   UPDATE products
+   SET price = price * 1.1
+   WHERE category_id IN (SELECT id FROM categories WHERE category_name = 'Electronics');
+   ```
+
+5. **Subquery in DELETE statement**:
+   - Uses a subquery to delete records based on certain conditions.
+   ```sql
+   DELETE FROM customers
+   WHERE id NOT IN (SELECT DISTINCT customer_id FROM orders);
+   ```
+
+### Correlated Subqueries:
+
+6. **Correlated Subquery to Find Highest Salary per Department**:
+   - Uses a correlated subquery to find the highest salary per department.
+   ```sql
+   SELECT e1.name, e1.department, e1.salary
+   FROM employees e1
+   WHERE e1.salary = (SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department = e1.department);
+   ```
+
+### Subqueries in a CASE Statement:
+
+7. **Using Subquery in a CASE statement**:
+   - Utilizes a subquery within a CASE statement for conditional logic.
+   ```sql
+   SELECT name,
+          (CASE WHEN (SELECT COUNT(*) FROM orders WHERE orders.customer_id = customers.id) > 0 THEN 'Has Orders' ELSE 'No Orders' END) AS order_status
+   FROM customers;
+   ```
+

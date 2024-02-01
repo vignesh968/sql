@@ -1,0 +1,8 @@
+select contest_id ,hacker_id,name, totalsub,totalaccept,totalview ,totalunview
+from (select challenge_id ,sum(total_submissions)as totalsub,sum(total_accepted_submissions)as totalaccept,sum(total_views)as totalview,
+      sum(total_unique_views) as totalunview from View_stats vs join submission_stats ss on vs.challenge_id=ss.challenge_id
+      group by challenge_id )having 
+sum(ss.total_submissions)>0,sum(ss.total_accepted_submissions) >0,sum(vs.total_views)>0,
+      sum(vs.total_unique_views)>0
+      order by contest_id asc 
+      

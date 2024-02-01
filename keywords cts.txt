@@ -1,0 +1,136 @@
+date
+1.date()
+2.day()
+3.month()
+4.year()
+5.datetime()
+6.timestamp()
+7.dayofweek() //1-7
+8.dayofyear() //1-365
+9.now()
+10.dayname() // mon to sun
+11.curdate()
+12.curtime()
+13.extract(unit from date)// unit-dayor month or year
+14.date_add(date interval expr type)//exp-duraction--yy,mm,dd type->year or month or day
+15.date_sub(date interval expr type)//exp-duraction--yy,mm,dd type->year or month or day
+16.datediff(date1,date2)
+17.date_format(date,format) //format-yy-mm-dd
+
+
+aggregation
+1.avg()
+2.count()
+3.first()
+4.last()
+5.max()
+6.min()
+7.sum()
+8.floor()
+9.ceil()
+10.abs()
+11.power(2,4)
+12.group by
+13.having
+14.order by
+logical
+1.and or not
+
+control flow
+
+1. IF(score >= 70, 'Pass', 'Fail') 
+2. NULLIF(employee_id, supervisor_id) // if two are equal return null
+3.   COALESCE(year_2021, year_2022, year_2023, 'No bonus available')//it return first non-null value 
+conditional
+1. SELECT 
+       CASE 
+           WHEN condition1 THEN result1
+           WHEN condition2 THEN result2
+           ELSE default_result
+       END AS computed_column
+   FROM table; 
+
+(or)
+    IF condition THEN
+        statements;
+    ELSE
+        statements;
+    END IF;
+    ```
+scalar function
+1.ucase()
+2.lcase()
+3.mid()
+4.len()
+5.round()
+6.now()
+7.format()
+
+string
+1.ascii()
+2.length('hello')
+3.concat()
+
+4.concat_ws('-','for','geeks','for')
+5.find_in_set('b','a,b,c,d')
+6.field('b','r','b','j','p')
+7.format("0.981",percent)
+8.instr('geeks for geeks','e')// check position
+9.locate('is','this is a string ')//check position
+10 position ('e' in 'geeksforgeeks')
+11.left('geeks for geeks',5)
+12.lpad('geeks',8,'0')
+13.rpad('geeks',8,'0')
+14.ltrim('123123geeks','123')
+15.mid('geeksforgeeks',6,2)
+16.repeat('vicky',3)
+17.REPLACE('123geeks123', '123','')
+18.reverse('vicky')
+19.right('geeksforgeeks',4)
+20.TRIM('y' FROM 'yyyygeeksxyxzyyy')
+ TRIM(LEADING '0' FROM '000123');
+21.strcmp(str1,str2)
+22.substring_index('www.geeks.geeks','.',1)
+23.regexp
+24.like
+
+ranking
+1.over()
+2.dense_rank()
+3.rank()
+4.percent_rank()
+5.row_number
+
+dATA type 
+1.cast('123' as int)
+2.CONVERT('123', SIGNED INTEGER)
+
+null handling
+1.is null
+2.  IFNULL(column, 'default_value')
+
+mathematical
+1.sqrt(16)
+2.rand()
+
+subquery
+
+1.Select NAME, LOCATION, PHONE_NUMBER from DATABASE 
+WHERE ROLL_NO IN
+(SELECT ROLL_NO from STUDENT where SECTION=’A’); 
+
+2.
+INSERT INTO Student1  SELECT * FROM Student2;
+
+3.
+DELETE FROM Student2 
+WHERE ROLL_NO IN ( SELECT ROLL_NO 
+                   FROM Student1 
+                   WHERE LOCATION = ’chennai’);
+4.
+UPDATE Student2 
+SET NAME=’geeks’ 
+WHERE LOCATION IN ( SELECT LOCATION 
+                    FROM Student1 
+                    WHERE NAME IN (‘Raju’,’Ravi’));
+
