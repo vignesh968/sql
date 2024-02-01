@@ -1,0 +1,101 @@
+sql commands
+q1.select
+
+1.select * from persons;
+2.select LastName,FirstName from persons;
+q2.where
+
+1.select * from persons where not City='trichy'  or Address='trichy' ;
+2. select * from persons where City='trichy';
+3. select distinct  Address from persons;
+4.select count(distinct LastName) from persons;
+5. select * from persons where FirstNAME LIKE '%i%';
+6.select * from persons where PersonID  BETWEEN 5 AND 10;
+7.select * from persons where PersonID  <>11;
+8.select * from persons where FirstNAME LIKE '%i%';
+q3.WHERE NOT 
+
+1.select * from persons where NOT PersonID=9 AND NOT PersonID=1;
+WHERE AND - NOT WORK FOR SAME COLLUMN
+q4.IN
+
+1. select * from persons where FirstNAME IN('ram','ceb','ajay');
+q5.ORDER BY
+
+1.select * from persons ORDER BY PersonID DESC;
+2. select * from persons ORDER BY FirstName ASC;
+
+q6.limit
+
+1.select * from persons WHERE  LastName='a'LIMIT 4;
+
+q7.delete
+
+1. delete from persons where PersonID=12;    
+q8.update
+
+1.update persons set  LastName='g',Address='padalur' where PersonID=8;
+
+q9.is null
+
+1.select * from jobs where totalprize is null;
+q10.is not null
+
+select * from jobs where totalprize is not null;
+
+q11.aggregate
+
+1.average
+select avg(totalprize) from jobs; 
+2.minimum
+select min(totalprize) from jobs;  
+3.maximum
+select max(totalprize) from jobs; 
+4.total sum
+ select sum(totalprize) from jobs;
+5.count
+ select count(totalprize) from jobs;
+
+q12.like
+	
+start
+ select * from persons where FirstName like 'a%';
+end
+	 select * from persons where FirstName like '%y';
+second position
+ select * from persons where FirstName like '_i%';
+start and end 
+ select * from persons where FirstName like 'a%h';
+least 2 or 3 character length
+	2 len
+ select * from persons where FirstName like 'a_%';
+ 3 len
+ select * from persons where FirstName like 'a__%';
+
+q13.rename the table
+
+1.alter table persons rename to student;
+
+
+q14.joins
+
+	left join
+select * from customer left join account on customer.custid=account.custid;
+	right join
+  select * from student right  join jobs on student.custid=jobs.custid ;
+inner join
+ select * from student inner  join jobs on student.custid=jobs.custid;
+
+self join 
+	-- it is used for seeing mulitple content or ex multiple course reg by students (within table)checking.
+
+select s1.stid,s1.name ,s1.course_id from selfjoin as s1,selfjoin s2 where s1.stid=s2.stid and s1.course_id<>s2.course_id;
+
+q15.subquries
+
+1.view
+create view dataview as  select  department_ID,department_Name,Location_ID from departments where Manager_ID>=200;
+
+delete from dataview where department_ID=10;
+
+select * from dataview;

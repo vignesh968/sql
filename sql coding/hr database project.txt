@@ -1,0 +1,241 @@
+--  to create database
+
+create database hrMANAGEMENT;
+-- to show  database
+
+show databases;
+-- to use database
+
+use hrMANAGEMENT;
+-- to create table for countries
+
+-- table 1
+create  table countries(
+country_ID varchar(2) NOT NULL,
+country_Name varchar(40) default null,
+Region_ID decimal(10,0) default null,
+primary key(country_ID));
+show tables;
+-- to insert values to tables
+
+insert into countries values
+('AR','Argentina','2'),('AU','Australia','3'),
+('IN','India','4'),('AM','America',4),
+('CH','China',5),('RS','Russia','6');
+-- to print-- 
+
+select  * from countries;
+
+-- table 2
+create table departments(
+department_ID decimal(4,0) not null default '0',
+department_Name varchar(30) not null ,
+Manager_ID decimal(6,0) default null,
+Location_ID decimal(4,0) default null,
+primary key (department_ID),
+key Dept_MGR_FK (Manager_ID),
+KEY Dept_Location_Ix (Location_ID));
+
+insert into departments values
+('10','Administration','200','1700');
+insert into departments values
+('10','Administration','200','1700'),
+('20','Marketing','201','1800'),
+('30','Purchasing','114','1700'),
+('40','HR','203','2400'),
+('50','Shipping','111','1400'),
+('60','IT','106','1200' )
+;
+select * from departments;
+
+-- table 3
+create table Employees(
+Employee_ID decimal(6,0) not null default 0 ,  
+First_Name varchar(20) default null,
+Last_Name varchar(25)  not null,
+Email varchar(25)  not null,
+Phone_Number varchar(20)  default null,
+Hire_Date  date not null,
+Job_ID varchar(10) not null,
+Salary decimal(8,2) default null,
+commission_pct decimal(6,0) default null,
+Manager_ID decimal(6,0) default null,
+department_ID decimal(4,0) not null ,
+primary key(Employee_ID),
+unique key EMP_Email_uk(Email),
+key EMP_Department_IX (department_ID),
+key Emp_Job_IX (Job_ID),
+key EMP_MGR_IK (Manager_ID),
+KEY EMP_NAME_IX (Last_Name,First_Name));
+DESC Employees;
+show tables;
+
+
+insert into Employees values
+('100','vicky','cse','vickykalam7@gmail.com','1234567890','2023-01-05','Ar_pres','400000','0.00','200','10'),
+('400','vijay','ece','vijay1810@gmail.com','9876543210','2023-01-01','AR_don','500000','0.00','201','20'),
+('500','ceb','cse','ceb22@gmail.com','4321567890','2023-01-05','Ar_pres','400000','0.00','114','30'),
+('600','anish','ece','anish17@gmail.com','6789543210','2023-01-01','AR_don','500000','0.00','203','40'),
+('700','sowmi','cse','sowmi06@gmail.com','4321509876','2023-01-15','Ar_pres','400000','0.00','111','50'),
+('800','ragul','ece','ragul07@gmail.com','6789501234','2023-01-11','AR_don','500000','0.00','106','60');
+-- to print
+
+select * from Employees;
+
+-- table 4
+
+create table job_history
+(
+Employee_ID decimal(6,0) not null ,
+Start_Date date not null,
+End_Date date not null,  
+Job_ID varchar(10) not null,
+department_ID decimal(4,0) default null ,
+primary key(Employee_ID,Start_Date),
+key JobHis_department_IX(department_ID),
+KEY JobHis_Employee_IX(Employee_ID),
+key JobHis_Job_IX(Job_ID));
+
+show tables;
+insert into job_history values
+('100','2001-11-26','2023-01-05','Ar_pres','10'),
+('400','2001-10-18','2023-01-01','AR_don','20'),
+('500','2002-2-22','2023-01-05','Ar_pres','30'),
+('600','2001-6-6','2023-01-01','AR_don','40'),
+('700','2001-4-2','2023-01-15','Ar_pres','50'),
+('800','2001-7-15','2023-01-11','AR_don','60');
+update Employees set Job_ID='Ar_pres1' WHERE department_ID='10';
+update Employees set Job_ID='Ar_pres2' WHERE department_ID='30';
+update Employees set Job_ID='Ar_pres3' WHERE department_ID='50';
+update Employees set Job_ID='Ar_don1' WHERE department_ID='20';
+update Employees set Job_ID='Ar_don2' WHERE department_ID='40';
+update Employees set Job_ID='Ar_don3' WHERE department_ID='60';
+-- to print set 
+select * from job_history;
+
+-- table 5
+create table jobs(
+Job_ID varchar(10) not null,
+Job_Title varchar(35) not null,
+Mini_Salary decimal(6,0) default null,
+Max_Salary decimal(6,0) default null,
+primary key(Job_ID));
+
+insert into jobs values
+('Ar_pres1','Administration','200000','400000'),
+('AR_don1','Marketing','500000','800000'),
+('AR_pres2','Purchasing','400000','700000'),
+('AR_don2','HR','200000','600000'),
+('Ar_pres3','Shipping','300000','500000'),
+('AR_don3','IT','350000','500000');
+select * from jobs;
+
+
+-- table 6
+
+create table location
+(
+Location_ID decimal(4,0) not null default 0,
+Street_Address varchar(40)default null ,
+Postal_Code varchar(20)default null  ,
+City varchar(30) not null ,
+State_Province varchar(25)  default null  ,
+Country_ID varchar(2)  default null ,
+primary key (Location_ID),
+key Loc_City_IX(City),
+key Loc_Country_IX(Country_ID),
+key Loc_State_Province_IX(State_Province)
+);
+
+insert into location values
+('2001','1/2 south street','123-234','cordoba','ar1234','AR'),
+('2002','1/3 south street','125-239','Melbourne','au123','AU'),
+('2003','1/4 south street','453-294','chennai','in123','IN'),
+('2004','1/5 south street','673-274','new york','am123','AM'),
+('2005','1/6 south street','893-244','chongqing','ch123','CH'),
+('2006','1/7 south street','763-264','Moscow','rs123','RS');
+
+select * from location;
+show databases;
+
+create table  region (Region_ID decimal(5,0) not null,
+Region_Name varchar(25) default null,
+primary key (Region_ID),
+unique key ss(Region_Name));
+insert into region values
+('2','Argentina'),('3','Australia'),
+('4','India'),('5','America'),
+('6','China'),('7','Russia');
+select * from region;
+select * from countries;
+-- --------------------------------------------------------------table creation over------------------------------------------------------------------------------
+
+
+--  -------------------------------------------------------------start practice----------------------------------------------------------------------------------------
+-- 1.inner joins
+ select * from Employees left join departments on Employees.department_ID=departmentS.department_ID;
+ 
+ -- 2. write a query to display a (first_name,last_name) as First Name and Last Name ?
+ select First_Name as "First Name",Last_Name as "Last Name"  from Employees;
+ 
+ -- 3. write a query to get unique department id from   Employee table ? // to remove duplicate
+ select  distinct department_ID from Employees;
+ --  4.write a query to get all employees details from Employee table order by name as descending ?
+ select * from Employees order by First_Name desc;
+ 
+ -- 5. to get firstname,lastname,salary, pfof all employees (pf is calculated by 15% of salary) ?
+ select  First_Name,Last_Name,Salary,Salary*0.15 as PF from employees;
+ 
+ -- 6.to get  details of employees order by salary 
+ select * from Employees order by salary;
+ -- 7. min,max ,avg of salary of employees
+ select min(salary) as min_salary,max(salary) as max_salary,avg(salary) as average_salary from employees; 
+ 
+ -- 8 total number of employees in company ?
+ select count(*) as "total employee" from employees;
+ 
+ -- 9. to get number of jobs available in employees tables;
+ select count(distinct Job_ID) FROM employees;
+ 
+ -- 10 to get name of employees as upper case ?
+ select upper(First_Name) from employees;
+ 
+ -- 11. to get first 3 character of first_name of employees in ET.
+ select substring(First_Name,1,3) from employees;
+ 
+ -- 12. query to calculate 171*214+625
+ select 171*214+625 result;
+ select 4/2 result;
+ 
+ -- 13. concatenation of first &last name of employees
+ select concat(First_Name,' ',Last_Name) as "Employees Name" from Employees;
+ 
+ -- 14 to remove white space from first_name
+ select trim(First_Name) from Employees;
+ 
+ -- 15 to check  if first name fields contain number or not ?
+ select * from employees where First_Name regexp '[0-9]'; -- output is empty
+ 
+ -- 16 . to select first 3 records from tables
+ 
+ select * from employees limit 3;
+ 
+ -- 17. to get monthly salary of employees (assume that salary field provide "annual salary")  ?
+ select First_name,Last_Name, round(Salary/12,2)  as "monthly salary" from employees;
+ 
+ -- -----------or -------------------
+  select concat(First_Name,' ',Last_Name) as "Employees Name", round(Salary/12,2)  as "monthly salary" from employees;
+
+-- 18.to not print 450,000 to 500,000 of salary of emplyees details;
+select * from employees where Salary  not between 450000 AND 500000; 
+-- 19 TO PRINT DETAILS OF DEPARTMENT_ID IN 30 O 40
+ select * from employees where DEPARTMENT_ID IN(30,40); 
+ 
+ -- 20.YESR OF HIRING DATE OF ALL EMPLOYEES IN 2001 ?
+ select * from employees where year(Hire_Date)='2023';
+
+-- 21. first name has or contain  both 'c' and 'k'  of employees ?
+select * from employees where First_Name like '%c%' and First_Name like '%k%' ;
+
+-- 22.to print the exactly 3 character of lastname;
+select last_name from employees where last_name like '___';
